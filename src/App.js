@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Route,
+  createRoutesFromElements,
+} from "react-router-dom";
+import "./App.css";
+import ProtectedLayout from "./layouts/ProtectedLayout/ProtectedLayout";
+import PublicLayout from "./layouts/PublicLayout/PublicLayout";
+import {
+  MovieDetailPage,
+  MoviesPage,
+  MovieTrailerPage,
+  ProfilePage,
+  SearchMoviesPage,
+  SignInPage,
+  SignUpPage,
+} from "./pages";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <>
+        <Route path="/auth" element={<PublicLayout />}>
+          <Route path="signin" element={<SignInPage />} />
+          <Route path="signup" element={<SignUpPage />} />
+        </Route>
+
+        <Route path="/" element={<ProtectedLayout />}>
+          <Route index element={<MoviesPage />} />
+          <Route path="search" element={<SearchMoviesPage />} />
+          <Route path=":type/:id" element={<MovieDetailPage />}>
+            <Route path="video" element={<MovieTrailerPage />} />
+          </Route>
+          <Route path="profile" element={<ProfilePage />} />
+        </Route>
+      </>
+    )
   );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
