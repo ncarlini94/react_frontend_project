@@ -73,4 +73,4 @@ export const apiNetflix = {
         posterw780: "/w780",
         posterw1280: "/w1280",
     },
-} 
+}
