@@ -17,6 +17,7 @@ import {
   SignUpPage,
 } from "./pages";
 
+
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(

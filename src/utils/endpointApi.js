@@ -7,8 +7,8 @@ export const apiNetflix = {
         pagination: "&page=",
     },
     entity: {
-        movie: "/movie/",
-        series: "/tv/",
+        movie: "/movie",
+        series: "/tv",
     },
     state: {
         latest: "/latest",
